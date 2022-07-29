@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ArrAirActivity">
+    tools:context=".home.ArrAirActivity">
 
     <TextView
         android:id="@+id/textView5"
@@ -26,10 +26,12 @@
         android:layout_marginStart="1dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <include layout="@layout/common_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

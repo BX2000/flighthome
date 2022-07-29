@@ -1,4 +1,4 @@
-package com.example.flighthome;
+package com.example.flighthome.airport;
 
 public class Airport {
     private String name;

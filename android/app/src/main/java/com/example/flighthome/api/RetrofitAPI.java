@@ -1,7 +1,9 @@
-package com.example.flighthome;
+package com.example.flighthome.api;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -52,6 +54,15 @@ public interface RetrofitAPI {
                               @Query("type") String type,
                               @Query("iataCode") String dep,
                               @Query("flight_iata")String air_iata);
+
+    @POST("account")
+    Call<String> createAccount(@Body JSONObject json);
+
+    @POST("flights/{userid}")
+    Call<String> postFlight(@Path("userid") String id, @Body JsonObject json);
+
+    @GET("account/{userid}")
+    Call<JsonObject> getMyFlight(@Path("userid") String id);
 
 }
 

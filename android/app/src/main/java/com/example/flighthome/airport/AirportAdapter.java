@@ -1,4 +1,4 @@
-package com.example.flighthome;
+package com.example.flighthome.airport;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,12 +11,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.flighthome.GlobalVariable;
+import com.example.flighthome.R;
+import com.example.flighthome.home.SearchActivity;
+import com.example.flighthome.home.ArrAirActivity;
+
 import java.util.List;
 
 public class AirportAdapter extends RecyclerView.Adapter<AirportAdapter.ViewHolder>{
     private List<Airport> list;
-    public AirportAdapter(List<Airport> list){
+    private String[] flightArr;
+    public AirportAdapter(List<Airport> list,String[] flightArr){
         this.list = list;
+        this.flightArr = flightArr;
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView name_text;
@@ -31,15 +38,17 @@ public class AirportAdapter extends RecyclerView.Adapter<AirportAdapter.ViewHold
             choose.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(MainActivity.isArrival){
-                        MainActivity.airport_arr = iata_text.getText().toString();
-                        MainActivity.airport_arr_name = name_text.getText().toString();
+                    if(GlobalVariable.isArrival){
+                        flightArr[5] = iata_text.getText().toString();
+                        flightArr[6] = name_text.getText().toString();
                         Intent settingsIntent = new Intent(context, SearchActivity.class);
+                        settingsIntent.putExtra("flight",flightArr);
                         context.startActivity(settingsIntent);
                     }else{
-                        MainActivity.airport_dep = iata_text.getText().toString();
-                        MainActivity.airport_dep_name = name_text.getText().toString();
+                        flightArr[3] = iata_text.getText().toString();
+                        flightArr[4] = name_text.getText().toString();
                         Intent settingsIntent = new Intent(context, ArrAirActivity.class);
+                        settingsIntent.putExtra("flight",flightArr);
                         context.startActivity(settingsIntent);
                     }
                 }

@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FlightInfoActivity">
+    tools:context=".home.FlightInfoActivity">
+
+    <include layout="@layout/common_button" />
 
     <TextView
         android:id="@+id/textView6"
@@ -25,7 +27,7 @@
         android:layout_marginStart="1dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -52,8 +54,8 @@
                         android:id="@+id/leave_time_2"
                         android:layout_width="110dp"
                         android:layout_height="wrap_content"
-                        android:text="leave"
                         android:gravity="center"
+                        android:text="leave"
                         android:textAppearance="?attr/textAppearanceTitleMedium"
                         android:textSize="32sp" />
 
@@ -76,8 +78,8 @@
                         android:layout_width="110dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
-                        android:text="arrive"
                         android:gravity="center"
+                        android:text="arrive"
                         android:textAppearance="?attr/textAppearanceTitleMedium"
                         android:textSize="32sp" />
                 </LinearLayout>
@@ -92,9 +94,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="40dp"
                         android:layout_marginTop="8dp"
-                        android:textStyle="bold"
                         android:textAppearance="?attr/textAppearanceBodyMedium"
-                        android:textColor="?android:attr/textColorSecondary" />
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/arrive_info"
@@ -103,9 +105,9 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginRight="20dp"
                         android:gravity="center"
-                        android:textStyle="bold"
                         android:textAppearance="?attr/textAppearanceBodyMedium"
-                        android:textColor="?android:attr/textColorSecondary" />
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -282,7 +284,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textColor="#E55934"
-                                    android:textStyle="bold"/>
+                                    android:textStyle="bold" />
                             </LinearLayout>
 
                             <LinearLayout

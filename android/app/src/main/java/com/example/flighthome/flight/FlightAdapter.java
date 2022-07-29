@@ -1,4 +1,4 @@
-package com.example.flighthome;
+package com.example.flighthome.flight;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,12 +11,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.flighthome.api.API;
+import com.example.flighthome.GlobalVariable;
+import com.example.flighthome.R;
+import com.example.flighthome.home.FlightInfoActivity;
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+
 import java.util.List;
 
 public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder>{
     private List<Flight> list;
-    public FlightAdapter(List<Flight> list){
+    private String[] flightArr;
+    public FlightAdapter(List<Flight> list,String[] flightArr){
         this.list = list;
+        this.flightArr = flightArr;
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView leave_text;
@@ -42,11 +52,38 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder
             detail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MainActivity.flight_iata = air_num.getText().toString();
-                    MainActivity.time_dep=leave_text.getText().toString();
-                    MainActivity.time_arr=arrive_text.getText().toString();
+                    flightArr[7] = air_num.getText().toString();
+                    flightArr[8] =leave_text.getText().toString();
+                    flightArr[9] =arrive_text.getText().toString();
                     Intent settingsIntent = new Intent(context, FlightInfoActivity.class);
+                    settingsIntent.putExtra("flight",flightArr);
                     context.startActivity(settingsIntent);
+                }
+            });
+
+            save.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(!GlobalVariable.userid.equals("0")) {
+                        JsonObject json = new JsonObject();
+                        json.addProperty("fromIata", flightArr[3]);
+                        json.addProperty("toIata", flightArr[5]);
+                        json.addProperty("date", flightArr[2]);
+                        json.addProperty("dep_city", flightArr[0]);
+                        json.addProperty("arr_city", flightArr[1]);
+                        json.addProperty("airport_dep_name", flightArr[4]);
+                        json.addProperty("airport_arr_name", flightArr[6]);
+                        json.addProperty("flightNum", air_num.getText().toString());
+                        json.addProperty("leaveTime", leave_text.getText().toString());
+                        json.addProperty("arriveTime", arrive_text.getText().toString());
+                        json.addProperty("city_dep",flightArr[10]);
+                        json.addProperty("city_arr",flightArr[11]);
+                        try {
+                            API.postSave(json);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             });
         }
